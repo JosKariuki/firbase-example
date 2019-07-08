@@ -1,0 +1,26 @@
+<form [formGroup]="policyForm" (ngSubmit)="create(policyForm.value)">
+  <input type="text" formControlName="policyNumber" required>
+  <input type="date" formControlName="effectiveDate" required>
+  <input type="date" formControlName="creationDate" required>
+  <button type="submit">Submit</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>number</th>
+      <th>effectiveDate</th>
+      <th>creationDate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let policy of policies">
+      <td>{{policy.policyNumber}}</td>
+      <td>{{policy.effectiveDate}}</td>
+      <td>{{policy.creationDate}}</td>
+      <td><button (click) = "delete(policy.id)">delete</button></td>
+    </tr>
+  </tbody>
+</table>
+
+{{policyForm.value|json}}

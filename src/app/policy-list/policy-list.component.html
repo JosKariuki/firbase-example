@@ -1,0 +1,36 @@
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Created At</th>
+      <th>Expire At</th>
+      <th>Amount</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let policy of policies">
+
+      <td (click)="edit(policy)">{{policy.policyNumber}}</td>
+      <td>{{policy.creationDate}}</td>
+      <td>{{policy.expireDate}}</td>
+      <td>{{policy.policyAmount}}</td>
+      <td>
+          <button (click)="delete(policy.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<form #policyForm="ngForm" (ngSubmit)="create(policyForm.value)">
+  Policy Number: <input type="text" name="policyNumber" [ngModel] = "model.policyNumber"><br>
+  Creation Date: <input type="date" name="creationDate" [ngModel] = "model.creationDate"><br>
+  Expire Date: <input type="date" name="expireDate" [ngModel] = "model.expireDate"><br>
+  Policy Amount: <input type="number" name="policyAmount" [ngModel] = "model.policyAmount" required><br>
+  <input type="submit" value="submit" [disabled] = "!policyForm.valid">
+  <button type="reset" (click) = "reset()">reset</button>
+</form>
+
+
+{{policyForm.value|json}}
+{{policyForm.valid}}
